@@ -70,7 +70,7 @@ export function OpsDashboard() {
             onClick={() => setFilterRoute(f.value)}
             className={`px-2.5 py-1 text-[10px] rounded border transition-colors ${
               filterRoute === f.value
-                ? "bg-accent text-white border-accent"
+                ? "bg-accent text-bg-primary font-medium border-accent"
                 : "bg-bg-tertiary text-text-secondary border-border hover:bg-bg-hover"
             }`}
           >

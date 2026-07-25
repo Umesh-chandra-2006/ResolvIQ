@@ -338,13 +338,35 @@ export const SCENARIO_D: DisputeCase = makeCase(
   }
 );
 
-function makeBackgroundCase(
-  index: number,
-  reasonCode: ReasonCode,
-  amount: number
-): DisputeCase {
+// Deterministic PRNG (mulberry32) so background cases — and therefore every
+// ops-dashboard metric computed from them — are byte-identical on every load.
+function mulberry32(seed: number): () => number {
+  let a = seed;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const BACKGROUND_STATUSES: DisputeCase['status'][] = [
+  'filed',
+  'evidence_collected',
+  'scoring',
+  'narrated',
+  'routed',
+  'resolved',
+];
+
+function makeBackgroundCase(index: number): DisputeCase {
+  const rand = mulberry32(index + 1);
   const id = `D-2026-${String(851 + index).padStart(4, '0')}`;
-  const daysAgo = Math.floor(Math.random() * 14);
+  const reasonCode = REASON_CODES[index % REASON_CODES.length];
+  const amount = Math.round((50 + rand() * 950) * 100) / 100;
+  const daysAgo = Math.floor(rand() * 14);
+  const status = BACKGROUND_STATUSES[Math.floor(rand() * BACKGROUND_STATUSES.length)];
   const d = new Date('2026-07-25T10:00:00Z');
   d.setDate(d.getDate() - daysAgo);
   return makeCase(
@@ -354,9 +376,7 @@ function makeBackgroundCase(
     `MERCH-${6000 + index}`,
     `TXN-${90000 + index}`,
     `Dispute for order ${id}`,
-    ['filed', 'evidence_collected', 'scoring', 'narrated', 'routed', 'resolved'][
-      Math.floor(Math.random() * 6)
-    ] as DisputeCase['status'],
+    status,
     d.toISOString()
   );
 }
@@ -369,11 +389,7 @@ const REASON_CODES: ReasonCode[] = [
 ];
 
 export const BACKGROUND_CASES: DisputeCase[] = Array.from({ length: 20 }, (_, i) =>
-  makeBackgroundCase(
-    i,
-    REASON_CODES[i % REASON_CODES.length],
-    Math.round((50 + Math.random() * 950) * 100) / 100
-  )
+  makeBackgroundCase(i)
 );
 
 export const ALL_CASES: DisputeCase[] = [

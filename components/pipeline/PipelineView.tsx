@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { SCENARIO_A } from "@/lib/fixtures/cases";
+import { score } from "@/lib/engine/score";
+import { narrate } from "@/lib/engine/narrate";
 
 const CONNECTORS = [
   { id: "E-1", label: "Carrier / Tracking", source: "carrier", latency: 200 },
@@ -11,6 +13,17 @@ const CONNECTORS = [
   { id: "E-4", label: "Transaction Store", source: "transaction_store", latency: 150 },
   { id: "E-5", label: "Comms Log / Docs", source: "comms_log", latency: 500 },
 ];
+
+// Everything the pipeline reports is computed from the engine on the same
+// fixture the demo files — no hardcoded verdicts, confidences, or counts.
+const DECISION = score(SCENARIO_A.features!, SCENARIO_A.amount, SCENARIO_A.reasonCode);
+const NARRATION = narrate({
+  decision: DECISION,
+  evidence: SCENARIO_A.evidence,
+  reasonCode: SCENARIO_A.reasonCode,
+});
+const CLAIMS_TOTAL = NARRATION.guardReport.length;
+const CLAIMS_TRACED = NARRATION.guardReport.filter((c) => c.tracedTo !== null).length;
 
 export function PipelineView() {
   const [running, setRunning] = useState(false);
@@ -81,7 +94,7 @@ export function PipelineView() {
             className={`px-4 py-2 text-xs rounded font-medium transition-colors ${
               running
                 ? "bg-bg-tertiary text-text-secondary border border-border"
-                : "bg-accent text-white hover:bg-accent/80"
+                : "bg-accent text-bg-primary font-medium hover:bg-accent/80"
             }`}
           >
             {running ? "Reset" : "Run Pipeline"}
@@ -109,7 +122,7 @@ export function PipelineView() {
                   stage.done
                     ? "bg-success text-white"
                     : stage.active
-                      ? "bg-accent text-white animate-pulse-glow"
+                      ? "bg-accent text-bg-primary font-medium animate-pulse-glow"
                       : "bg-bg-tertiary text-text-muted border border-border"
                 }`}>
                   {stage.done ? "✓" : i + 1}
@@ -136,7 +149,7 @@ export function PipelineView() {
                             key={conn.id}
                             className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-all duration-300 ${
                               done
-                                ? "bg-success-dim text-success"
+                                ? "bg-success-dim text-success animate-evidence-land"
                                 : "bg-bg-tertiary text-text-muted animate-pulse"
                             }`}
                           >
@@ -156,14 +169,18 @@ export function PipelineView() {
                   {stage.label === "Scoring Engine" && step >= 3 && (
                     <div className="h-full flex items-center px-2">
                       <span className="text-[10px] text-text-secondary font-mono">
-                        member: 0.91 | route: auto_resolve | no rules fired
+                        {DECISION.verdict}: {DECISION.confidence.toFixed(2)} | route:{" "}
+                        {DECISION.route} |{" "}
+                        {DECISION.hardRulesFired.length
+                          ? DECISION.hardRulesFired.join(", ") + " fired"
+                          : "no rules fired"}
                       </span>
                     </div>
                   )}
                   {stage.label === "Narration + Guard" && step >= 4 && (
                     <div className="h-full flex items-center px-2">
                       <span className="text-[10px] text-success font-medium">
-                        12/12 claims traced ✓
+                        {CLAIMS_TRACED}/{CLAIMS_TOTAL} claims traced ✓
                       </span>
                     </div>
                   )}
