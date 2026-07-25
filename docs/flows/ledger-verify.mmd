@@ -1,0 +1,18 @@
+```mermaid
+flowchart TD
+    A[Action Occurs] --> B[Create LedgerEntry]
+    B --> C[Get Previous Entry Hash]
+    C --> D[prevHash = entryHash of last entry\nor 000...0 for genesis]
+    D --> E[canonicalJSON of payload]
+    E --> F[SHA-256 of prevHash + canonicalJSON]
+    F --> G[entryHash = computed hash]
+    G --> H[Append to Ledger]
+    H --> I[INSERT-only — no UPDATE/DELETE]
+    I --> J[Verify Chain Button]
+    J --> K[Recompute Each Hash]
+    K --> L{All Hashes Match?}
+    L -->|Yes| M[Chain Valid — Green]
+    L -->|No| N[First Break Found — Red]
+    N --> O[Downstream Entries Marked Broken]
+    O --> P[Tamper Detected]
+```

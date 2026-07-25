@@ -1,0 +1,15 @@
+```mermaid
+flowchart LR
+    A[Case Opened] --> B[Parallel Fan-Out]
+    B --> C[E-1\nCarrier]
+    B --> D[E-2\nMerchant]
+    B --> E[E-3\nMember History]
+    B --> F[E-4\nTransaction]
+    B --> G[E-5\nComms/Docs]
+    C --> H[Evidence Collected]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Typed EvidenceItem\nwith SHA-256 hash]
+```

@@ -1,0 +1,36 @@
+```mermaid
+flowchart TD
+    A[Member Files Dispute] --> B[Reason Code Classification]
+    B --> C[Case Opened + Reg Z Clock Starts]
+    C --> D{Evidence Assembly\nParallel Fan-Out}
+    D --> E[Transaction Store]
+    D --> F[Carrier / Tracking]
+    D --> G[Merchant Record]
+    D --> H[Member History]
+    D --> I[Comms Log / Docs]
+    E --> J[Evidence Collected]
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+    J --> K[Hard Rules Evaluation\nHR-1 through HR-4]
+    K --> L{Rules Fired?}
+    L -->|No| M[Linear Scorecard\n+ Monotonic Stand-in]
+    L -->|Yes| N[Route to Human\nwith Rule Override]
+    M --> O[Platt Calibration]
+    O --> P{Scorecard-GBM\nAgreement?}
+    P -->|Agree| Q[Confidence Score]
+    P -->|Disagree| N
+    Q --> R{Routing Decision}
+    R -->|conf >= 0.85\nno rules| S[Auto Resolve]
+    R -->|0.55 <= conf < 0.85| T[Proposed Split]
+    R -->|conf < 0.55\nor rules fired| N
+    S --> U[Narration + Faithfulness Guard]
+    T --> U
+    N --> V[Full Case File to Agent]
+    U --> W[Written Decision Issued]
+    W --> X[Both Portals Updated]
+    X --> Y[Hash-Chained Ledger Entry]
+    V --> Z[Agent Reviews + Override/Approve]
+    Z --> Y
+```

@@ -1,0 +1,23 @@
+```mermaid
+flowchart TD
+    A[Features Input] --> B{HR-1: Delivery +\nDevice Match?}
+    B -->|Yes + goods_not_received| C[FORCE: Human Escalation]
+    B -->|No| D{HR-2: Amount > $2500?}
+    D -->|Yes| E[Block Auto-Resolve]
+    D -->|No| F{HR-3: Member Rate\nz > 3.0?}
+    F -->|Yes| G[Block Auto-Credit]
+    F -->|No| H[Linear Scorecard\nz = SUM(wi * xi)]
+    H --> I[p_scorecard = sigmoid(z)]
+    I --> J[Monotonic Tree\np_model]
+    J --> K{HR-4: |p_model -\np_scorecard| > 0.25?}
+    K -->|Yes| L[Human Escalation]
+    K -->|No| M[Platt Calibration\nconf = sigmoid(A*z + B)]
+    M --> N{conf >= 0.85?}
+    N -->|Yes + no rules + scorecard agree| O[AUTO RESOLVE]
+    N -->|No| P{0.55 <= conf < 0.85?}
+    P -->|Yes| Q[PROPOSED SPLIT]
+    P -->|No| R[HUMAN ESCALATION]
+    E --> R
+    G --> R
+    L --> R
+```
