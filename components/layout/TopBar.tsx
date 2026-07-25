@@ -21,23 +21,28 @@ export function TopBar() {
     <>
       <header className="h-12 border-b border-border bg-bg-secondary flex items-center justify-between px-4 shrink-0">
         <div className="flex items-center gap-3">
-          <span className="px-2 py-0.5 bg-warning-dim text-warning text-[10px] font-bold uppercase tracking-wider rounded">
-            DEMO DATA
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-warning-dim text-warning text-[10px] font-semibold uppercase tracking-wider rounded border border-warning/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-warning animate-pulse" />
+            Demo data
           </span>
           <span className="text-xs text-text-muted">
-            ResolvIQ Prototype — Not production data
+            Seeded fixtures — never real card data
           </span>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-bg-tertiary rounded p-0.5">
+          <span className="text-[10px] text-text-muted uppercase tracking-wider hidden sm:inline">
+            View as
+          </span>
+          <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-md p-0.5 border border-border">
             {ROLES.map((role) => (
               <button
                 key={role}
                 onClick={() => setRole(role)}
+                aria-pressed={currentRole === role}
                 className={`px-2.5 py-1 text-xs rounded transition-colors ${
                   currentRole === role
-                    ? "bg-accent text-white"
+                    ? "bg-accent text-bg-primary font-medium"
                     : "text-text-secondary hover:text-text-primary hover:bg-bg-hover"
                 }`}
               >
@@ -48,9 +53,10 @@ export function TopBar() {
 
           <button
             onClick={() => setShowDemo(true)}
-            className="px-3 py-1 text-xs bg-bg-tertiary text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded border border-border transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs bg-bg-tertiary text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded-md border border-border transition-colors"
           >
-            Demo Control
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+            Demo control
           </button>
         </div>
       </header>

@@ -56,7 +56,7 @@ export function FileDispute({ onFiled }: { onFiled: () => void }) {
             <div
               className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
                 step >= s
-                  ? "bg-accent text-white"
+                  ? "bg-accent text-bg-primary font-medium"
                   : "bg-bg-tertiary text-text-muted border border-border"
               }`}
             >
@@ -170,7 +170,7 @@ export function FileDispute({ onFiled }: { onFiled: () => void }) {
             <button
               onClick={handleFile}
               disabled={!claim.trim() || filing}
-              className="flex-1 px-4 py-2 text-xs bg-accent text-white rounded hover:bg-accent/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 text-xs bg-accent text-bg-primary font-medium rounded hover:bg-accent/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {filing ? "Filing..." : "Submit Dispute"}
             </button>

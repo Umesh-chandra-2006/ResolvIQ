@@ -21,15 +21,20 @@ const SCORECARD_WEIGHTS: ScorecardWeight[] = [
 
 const INTERCEPT = 0.1;
 
-const PLATT_A = -1.15;
-const PLATT_B = 0.05;
+// Calibration maps the scorecard margin |z| (distance from the decision
+// boundary, in log-odds) to a verdict-certainty score. A case far from the
+// boundary — for either side — is high-certainty; a case near it is low.
+// Constants are fixed, fit to the seeded scenarios; production trains and
+// calibrates on held-out synthetic cases per proposal §8.
+const PLATT_A = 1.9;
+const PLATT_B = -0.74;
 
 function sigmoid(z: number): number {
   return 1 / (1 + Math.exp(-z));
 }
 
-function plattCalibrate(raw: number): number {
-  return sigmoid(PLATT_A * raw + PLATT_B);
+function plattCalibrate(margin: number): number {
+  return sigmoid(PLATT_A * margin + PLATT_B);
 }
 
 function booleanToNumber(v: boolean): number {
@@ -148,11 +153,16 @@ function computeDistribution(
   return { member: memberPct, merchant: 100 - memberPct };
 }
 
-function determineVerdict(pScorecard: number, hardRulesFired: string[]): Verdict {
+function determineVerdict(
+  pScorecard: number,
+  hardRulesFired: string[],
+  route: Route
+): Verdict {
+  // HR-1 blocks any automated credit to the member.
   if (hardRulesFired.includes('HR-1')) return 'merchant';
-  if (pScorecard > 0.5) return 'member';
-  if (pScorecard < 0.4) return 'merchant';
-  return 'split';
+  // A proposed split is, by definition, a split verdict.
+  if (route === 'proposed_split') return 'split';
+  return pScorecard >= 0.5 ? 'member' : 'merchant';
 }
 
 function determineRoute(
@@ -181,23 +191,17 @@ export function score(
   const hardRules = evaluateHardRules(features, amount, reasonCode, pModel, pScorecard);
   const hardRulesFired = hardRules.filter((r) => r.fired).map((r) => r.id);
 
-  const rawConfidence = pScorecard;
-  const confidence = plattCalibrate(rawConfidence);
+  // Confidence = calibrated certainty of the verdict, derived from the margin
+  // |z| (distance from the decision boundary). A strong case for either side
+  // yields high confidence; a case near the boundary yields low confidence.
+  const margin = Math.abs(z);
+  const confidence = plattCalibrate(margin);
 
   const contributions = computeContributions(features);
   const scorecardAgreement = Math.abs(pModel - pScorecard) <= 0.25;
 
-  let verdict = determineVerdict(pScorecard, hardRulesFired);
-
   const route = determineRoute(confidence, hardRulesFired, scorecardAgreement);
-
-  if (hardRulesFired.includes('HR-1') && verdict !== 'merchant') {
-    verdict = 'merchant';
-  }
-
-  if (verdict === 'split' && confidence >= 0.85 && !hardRulesFired.length && scorecardAgreement) {
-    verdict = confidence >= 0.5 ? 'member' : 'merchant';
-  }
+  const verdict = determineVerdict(pScorecard, hardRulesFired, route);
 
   const distribution = computeDistribution(verdict, contributions);
 

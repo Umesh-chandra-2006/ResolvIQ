@@ -11,7 +11,7 @@ flowchart TD
     I --> J[Monotonic Tree\np_model]
     J --> K{HR-4: |p_model -\np_scorecard| > 0.25?}
     K -->|Yes| L[Human Escalation]
-    K -->|No| M[Platt Calibration\nconf = sigmoid(A*z + B)]
+    K -->|No| M[Calibration\nconf = sigmoid(A*abs_z + B)]
     M --> N{conf >= 0.85?}
     N -->|Yes + no rules + scorecard agree| O[AUTO RESOLVE]
     N -->|No| P{0.55 <= conf < 0.85?}

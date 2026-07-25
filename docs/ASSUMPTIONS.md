@@ -17,7 +17,7 @@ All mocked sources carry a visible `MOCK` badge on every screen where they appea
 ## Model / Weights
 
 - **Scoring weights are hand-set**, not trained on data. No public dispute-resolution dataset exists (only fraud-detection sets). Production would train on held-out synthetic cases per §8 of the proposal.
-- **Platt calibration constants** (A=-1.15, B=0.05) are fixed for the prototype. Production would calibrate on held-out data.
+- **Calibration constants** (A=1.9, B=-0.74) are fixed for the prototype. Confidence is the calibrated certainty of the verdict, derived from the scorecard margin `|z|` (distance from the decision boundary in log-odds) as `conf = sigmoid(A·|z| + B)` — so a strong case for *either* party is high-confidence and a boundary case is low. Production would calibrate on held-out data per §8 of the proposal.
 - **Monotonic tree stand-in** uses thresholded rules as a stand-in for a monotonic GBM. Production would use XGBoost with monotonicity constraints.
 
 ## Data
