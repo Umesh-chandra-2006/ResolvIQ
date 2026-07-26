@@ -47,10 +47,34 @@ html {
 }
 
 body {
-  background: var(--color-bg-primary);
+  /* An instrument panel isn't backlit. Flat ink with a faint cool sheen along
+     the top edge — the milled face of the console, not a glowing dashboard. */
+  background: linear-gradient(180deg, #0c1017 0%, var(--color-bg-primary) 42%);
+  background-attachment: fixed;
   color: var(--color-text-primary);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+  Instrument surfaces. The console is a measuring instrument and a ledger, not a
+  backlit dashboard: flat ink, one hairline edge, a single milled highlight along
+  the top. No blur, no glow — the evidence balance is the only thing that shines.
+  Class names are kept so the treatment propagates across every screen at once.
+*/
+.glass {
+  background: var(--color-bg-secondary);
+}
+
+.glass-panel {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 0 rgba(231, 235, 228, 0.03);
+}
+
+/* A ledger hairline — for dividers that read as ruled lines, not chrome. */
+.hairline {
+  border-color: var(--color-border);
 }
 
 /* Characterful display face, used with restraint on headings and verdicts. */
