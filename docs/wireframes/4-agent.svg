@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" font-family="'Segoe UI',system-ui,sans-serif">
+  <style>
+    .bg{fill:#f6f8fb}.frame{fill:#fff;stroke:#c3cbd6}.box{fill:#eef1f6;stroke:#c3cbd6}
+    .rail{fill:#e7ecf2;stroke:#c3cbd6}.lbl{fill:#5b6673;font-size:13px}.lbl-sm{fill:#8a94a1;font-size:11px}
+    .hd{fill:#39424e;font-size:16px;font-weight:600}.note{fill:#2f8a72;font-size:11px}
+    .acc{fill:#d8ece6;stroke:#66b79f}.title{fill:#39424e;font-size:20px;font-weight:700}
+    .chip{fill:#e9edf2;stroke:#c3cbd6}.mem{fill:#dbeaf2;stroke:#5ba9c9}.mer{fill:#f6e6cf;stroke:#d29a4e}
+    .danger{fill:#f6dcd9;stroke:#e0574b}.line{stroke:#cfd6de;stroke-width:6;stroke-linecap:round}
+  </style>
+  <rect class="bg" width="1200" height="820"/>
+  <text class="title" x="40" y="42">Wireframe 4 — Agent case view (escalations)</text>
+  <text class="lbl-sm" x="40" y="62">Evidence balance · feature table · rule log · model-vs-scorecard · Approve / Override (typed reason)</text>
+
+  <rect class="frame" x="40" y="80" width="1120" height="700" rx="8"/>
+  <rect class="rail" x="40" y="80" width="180" height="700"/>
+  <rect class="box" x="60" y="100" width="140" height="34" rx="6"/><text class="lbl" x="74" y="122">◇ ResolvIQ</text>
+  <rect class="box" x="60" y="150" width="140" height="28" rx="5" fill="#dfe6ee" stroke="#9aa6b4"/><text class="lbl" x="74" y="169">Agent</text>
+  <rect class="box" x="60" y="182" width="140" height="90" rx="5"/><text class="lbl-sm" x="74" y="202">Queue</text><line class="line" x1="74" y1="222" x2="186" y2="222"/><line class="line" x1="74" y1="240" x2="170" y2="240"/><line class="line" x1="74" y1="258" x2="180" y2="258"/>
+  <rect class="box" x="220" y="80" width="940" height="40"/><rect class="chip" x="236" y="90" width="90" height="20" rx="4"/><text class="lbl-sm" x="246" y="104">DEMO DATA</text>
+
+  <!-- SIGNATURE: balance -->
+  <text class="hd" x="244" y="150">Evidence balance — exact additive contributions</text>
+  <rect class="box" x="244" y="164" width="884" height="150" rx="6"/>
+  <text class="lbl-sm" x="260" y="186">◄ Cardmember</text><text class="lbl-sm" x="1060" y="186">Merchant ►</text>
+  <!-- beam -->
+  <rect x="300" y="212" width="560" height="8" rx="4" fill="#c3cbd6" transform="rotate(-3 580 216)"/>
+  <polygon points="580,222 592,238 568,238" fill="#8a94a1"/>
+  <!-- segmented axis -->
+  <rect class="mer" x="300" y="256" width="150" height="30" rx="5"/><text class="lbl-sm" x="360" y="275">E-4</text>
+  <rect class="mer" x="452" y="256" width="90" height="30" rx="5"/><text class="lbl-sm" x="488" y="275">E-3</text>
+  <rect class="mem" x="544" y="256" width="210" height="30" rx="5"/><text class="lbl-sm" x="640" y="275">E-1</text>
+  <rect class="mem" x="756" y="256" width="120" height="30" rx="5"/><text class="lbl-sm" x="808" y="275">E-2</text>
+  <line x1="760" y1="240" x2="760" y2="300" stroke="#39424e" stroke-width="2"/><text class="note" x="770" y="252">conf 0.91</text>
+
+  <!-- feature table -->
+  <text class="hd" x="244" y="352">Feature values</text>
+  <rect class="box" x="244" y="366" width="430" height="200" rx="6"/>
+  <line class="line" x1="262" y1="392" x2="640" y2="392"/><line class="line" x1="262" y1="416" x2="600" y2="416"/>
+  <line class="line" x1="262" y1="440" x2="628" y2="440"/><line class="line" x1="262" y1="464" x2="580" y2="464"/>
+  <line class="line" x1="262" y1="488" x2="618" y2="488"/>
+  <text class="lbl-sm" x="262" y="528">each feature links to its evidence id</text>
+
+  <!-- rule log + model vs scorecard -->
+  <text class="hd" x="700" y="352">Rule log · model vs scorecard</text>
+  <rect class="box" x="700" y="366" width="428" height="200" rx="6"/>
+  <rect class="chip" x="716" y="384" width="396" height="26" rx="5"/><text class="lbl-sm" x="728" y="401">HR-1 evaluated → not fired</text>
+  <rect class="chip" x="716" y="416" width="396" height="26" rx="5"/><text class="lbl-sm" x="728" y="433">HR-2/3/4 evaluated → not fired</text>
+  <rect class="chip" x="716" y="448" width="396" height="26" rx="5"/><text class="lbl-sm" x="728" y="465">p_model 0.60 · p_scorecard 0.83 · agree ✓</text>
+  <text class="note" x="716" y="500">On Scenario B this panel shows HR-1 + HR-3 FIRED (red)</text>
+  <text class="note" x="716" y="520">— the model leaned one way, the rules blocked it.</text>
+
+  <!-- actions -->
+  <rect class="acc" x="700" y="588" width="200" height="40" rx="6"/><text class="note" x="740" y="612">Approve recommendation</text>
+  <rect class="danger" x="912" y="588" width="216" height="40" rx="6"/><text x="928" y="612" font-size="11" fill="#b33b30">Override — requires typed reason → ledger</text>
+
+  <text class="lbl-sm" x="40" y="808">Low-fidelity wireframe · ResolvIQ Round 1</text>
+</svg>

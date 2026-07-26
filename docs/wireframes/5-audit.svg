@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" font-family="'Segoe UI',system-ui,sans-serif">
+  <style>
+    .bg{fill:#f6f8fb}.frame{fill:#fff;stroke:#c3cbd6}.box{fill:#eef1f6;stroke:#c3cbd6}
+    .rail{fill:#e7ecf2;stroke:#c3cbd6}.lbl{fill:#5b6673;font-size:13px}.lbl-sm{fill:#8a94a1;font-size:11px}
+    .hd{fill:#39424e;font-size:16px;font-weight:600}.note{fill:#2f8a72;font-size:11px}
+    .acc{fill:#d8ece6;stroke:#66b79f}.title{fill:#39424e;font-size:20px;font-weight:700}
+    .chip{fill:#e9edf2;stroke:#c3cbd6}.mono{fill:#3a6b60;font-size:12px;font-family:monospace}
+    .danger{fill:#f6dcd9;stroke:#e0574b}.warn{fill:#f6e6cf;stroke:#d29a4e}.ok{fill:#d8ece6;stroke:#66b79f}
+  </style>
+  <rect class="bg" width="1200" height="820"/>
+  <text class="title" x="40" y="42">Wireframe 5 — Audit browser</text>
+  <text class="lbl-sm" x="40" y="62">Hash-chained ledger spine · Verify chain · Tamper &amp; reset · entry detail with prev/entry hashes</text>
+
+  <rect class="frame" x="40" y="80" width="1120" height="700" rx="8"/>
+  <rect class="rail" x="40" y="80" width="180" height="700"/>
+  <rect class="box" x="60" y="100" width="140" height="34" rx="6"/><text class="lbl" x="74" y="122">◇ ResolvIQ</text>
+  <rect class="box" x="60" y="150" width="140" height="28" rx="5" fill="#dfe6ee" stroke="#9aa6b4"/><text class="lbl" x="74" y="169">Audit</text>
+  <rect class="box" x="60" y="182" width="140" height="28" rx="5"/><text class="lbl" x="74" y="201">Filter by case</text>
+  <rect class="box" x="220" y="80" width="940" height="40"/><rect class="chip" x="236" y="90" width="90" height="20" rx="4"/><text class="lbl-sm" x="246" y="104">DEMO DATA</text>
+
+  <!-- controls -->
+  <rect class="acc" x="244" y="140" width="150" height="36" rx="6"/><text class="note" x="278" y="163">Verify chain</text>
+  <rect class="warn" x="408" y="140" width="180" height="36" rx="6"/><text x="424" y="163" font-size="11" fill="#8a5b12">Tamper entry #3</text>
+  <rect class="chip" x="602" y="140" width="110" height="36" rx="6"/><text class="lbl-sm" x="628" y="163">Reset</text>
+
+  <!-- ledger spine -->
+  <text class="hd" x="244" y="212">Ledger spine</text>
+  <!-- node 1 ok -->
+  <rect class="ok" x="244" y="228" width="360" height="46" rx="6"/><text class="lbl" x="260" y="248">#1 case_opened</text><text class="mono" x="260" y="266">3fa2c1…</text><text class="note" x="560" y="256">✓</text>
+  <line x1="424" y1="274" x2="424" y2="292" stroke="#66b79f" stroke-width="3"/>
+  <rect class="ok" x="244" y="292" width="360" height="46" rx="6"/><text class="lbl" x="260" y="312">#2 evidence_added</text><text class="mono" x="260" y="330">9c1b04…</text><text class="note" x="560" y="320">✓</text>
+  <line x1="424" y1="338" x2="424" y2="356" stroke="#e0574b" stroke-width="3" stroke-dasharray="4 3"/>
+  <!-- node 3 broken -->
+  <rect class="danger" x="244" y="356" width="360" height="46" rx="6"/><text x="260" y="376" font-size="13" fill="#b33b30">#3 decision_issued  ✗ altered</text><text x="260" y="394" font-size="12" fill="#b33b30" font-family="monospace">00d4ff… (recomputed ≠ stored)</text>
+  <line x1="424" y1="402" x2="424" y2="420" stroke="#d29a4e" stroke-width="3" stroke-dasharray="4 3"/>
+  <rect class="warn" x="244" y="420" width="360" height="46" rx="6"/><text x="260" y="440" font-size="13" fill="#8a5b12">#4 notification_sent</text><text x="260" y="458" font-size="12" fill="#8a5b12" font-family="monospace">broken downstream</text>
+  <line x1="424" y1="466" x2="424" y2="484" stroke="#d29a4e" stroke-width="3" stroke-dasharray="4 3"/>
+  <rect class="warn" x="244" y="484" width="360" height="46" rx="6"/><text x="260" y="504" font-size="13" fill="#8a5b12">#5 agent_action</text><text x="260" y="522" font-size="12" fill="#8a5b12" font-family="monospace">broken downstream</text>
+
+  <!-- entry detail -->
+  <text class="hd" x="644" y="212">Entry detail — #3</text>
+  <rect class="box" x="644" y="228" width="484" height="302" rx="6"/>
+  <text class="lbl" x="662" y="256">actor:  system</text>
+  <text class="lbl" x="662" y="282">action: decision_issued</text>
+  <text class="lbl" x="662" y="308">model:  scorecard v-proto</text>
+  <text class="lbl-sm" x="662" y="340">payload</text>
+  <rect class="chip" x="662" y="350" width="448" height="70" rx="6"/><text class="mono" x="676" y="374">{ verdict: "member",</text><text class="mono" x="676" y="392">  confidence: 0.91, … }</text>
+  <text class="lbl-sm" x="662" y="446">prevHash</text><text class="mono" x="662" y="466">9c1b04a7…e2</text>
+  <text class="lbl-sm" x="662" y="494">entryHash</text><text class="mono" x="662" y="514" fill="#b33b30">00d4ff10…9a  ✗ mismatch</text>
+
+  <text class="note" x="244" y="566">entryHash = SHA-256(prevHash + canonicalJSON(payload)) · real Web Crypto · genesis prevHash = 64×0</text>
+  <text class="lbl-sm" x="40" y="808">Low-fidelity wireframe · ResolvIQ Round 1</text>
+</svg>

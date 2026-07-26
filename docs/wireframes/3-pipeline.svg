@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" font-family="'Segoe UI',system-ui,sans-serif">
+  <style>
+    .bg{fill:#f6f8fb}.frame{fill:#fff;stroke:#c3cbd6}.box{fill:#eef1f6;stroke:#c3cbd6}
+    .lbl{fill:#5b6673;font-size:13px}.lbl-sm{fill:#8a94a1;font-size:11px}
+    .hd{fill:#39424e;font-size:16px;font-weight:600}.note{fill:#2f8a72;font-size:11px}
+    .acc{fill:#d8ece6;stroke:#66b79f}.title{fill:#39424e;font-size:20px;font-weight:700}
+    .chip{fill:#e9edf2;stroke:#c3cbd6}.done{fill:#d8ece6;stroke:#66b79f}
+  </style>
+  <rect class="bg" width="1200" height="820"/>
+  <text class="title" x="40" y="42">Wireframe 3 — Pipeline view (recording asset)</text>
+  <text class="lbl-sm" x="40" y="62">Five connectors fire in parallel with real latency · running clock · stages resolve left→right</text>
+
+  <rect class="frame" x="40" y="80" width="1120" height="700" rx="8"/>
+  <!-- header: title + clock + run -->
+  <rect class="box" x="60" y="100" width="500" height="50" rx="6"/><text class="lbl" x="78" y="122">Case D-2026-0847 — Goods not received — $184.50</text>
+  <rect class="chip" x="820" y="100" width="180" height="50" rx="6"/><text class="lbl-sm" x="836" y="120">Elapsed</text><text class="title" x="836" y="142" fill="#2f8a72">3.2s</text>
+  <rect class="acc" x="1016" y="100" width="120" height="50" rx="6"/><text class="note" x="1040" y="130">Run pipeline</text>
+
+  <!-- stage 1 intake -->
+  <text class="hd" x="60" y="196">Stages</text>
+  <g>
+    <circle cx="90" cy="230" r="12" fill="#66b79f"/><text x="86" y="234" font-size="11" fill="#fff">✓</text>
+    <rect class="done" x="120" y="214" width="1016" height="32" rx="6"/><text class="lbl" x="138" y="234">Intake — reason-code classification</text>
+  </g>
+  <!-- stage 2 evidence with 5 connectors -->
+  <g>
+    <circle cx="90" cy="300" r="12" fill="#66b79f"/><text x="86" y="304" font-size="11" fill="#fff">✓</text>
+    <rect class="box" x="120" y="266" width="1016" height="90" rx="6"/>
+    <text class="lbl" x="138" y="288">Evidence assembly — 5 parallel connectors</text>
+    <rect class="done" x="138" y="300" width="180" height="42" rx="5"/><text class="lbl-sm" x="150" y="318">E-1 carrier</text><text class="note" x="150" y="334">200ms ✓</text>
+    <rect class="done" x="330" y="300" width="180" height="42" rx="5"/><text class="lbl-sm" x="342" y="318">E-2 merchant</text><text class="note" x="342" y="334">400ms ✓</text>
+    <rect class="done" x="522" y="300" width="180" height="42" rx="5"/><text class="lbl-sm" x="534" y="318">E-3 history</text><text class="note" x="534" y="334">300ms ✓</text>
+    <rect class="done" x="714" y="300" width="180" height="42" rx="5"/><text class="lbl-sm" x="726" y="318">E-4 txn store</text><text class="note" x="726" y="334">150ms ✓</text>
+    <rect class="chip" x="906" y="300" width="180" height="42" rx="5"/><text class="lbl-sm" x="918" y="318">E-5 docs</text><text class="lbl-sm" x="918" y="334">…landing</text>
+  </g>
+  <!-- stage 3 scoring -->
+  <g>
+    <circle cx="90" cy="404" r="12" fill="#c3cbd6"/><text x="86" y="408" font-size="11" fill="#5b6673">3</text>
+    <rect class="box" x="120" y="388" width="1016" height="32" rx="6"/>
+    <text class="lbl" x="138" y="408">Scoring engine — hard rules + scorecard + calibration</text>
+    <text class="note" x="820" y="408">member: 0.91 | auto_resolve | no rules</text>
+  </g>
+  <!-- stage 4 narration -->
+  <g>
+    <circle cx="90" cy="458" r="12" fill="#c3cbd6"/><text x="86" y="462" font-size="11" fill="#5b6673">4</text>
+    <rect class="box" x="120" y="442" width="1016" height="32" rx="6"/>
+    <text class="lbl" x="138" y="462">Narration + faithfulness guard</text>
+    <text class="note" x="900" y="462">12/12 claims traced ✓</text>
+  </g>
+  <!-- stage 5 routing -->
+  <g>
+    <circle cx="90" cy="512" r="12" fill="#c3cbd6"/><text x="86" y="516" font-size="11" fill="#5b6673">5</text>
+    <rect class="box" x="120" y="496" width="1016" height="32" rx="6"/>
+    <text class="lbl" x="138" y="516">Routing — decision classification</text>
+  </g>
+
+  <rect class="acc" x="120" y="560" width="1016" height="60" rx="8"/>
+  <text class="note" x="138" y="586">Pipeline complete in &lt; 60s → written decision issued to both parties with citations &amp; appeal rights</text>
+  <text class="lbl-sm" x="138" y="606">Orchestrated moment: evidence cards land with staggered latency — the “under a minute” claim, made visible</text>
+
+  <text class="lbl-sm" x="40" y="808">Low-fidelity wireframe · ResolvIQ Round 1</text>
+</svg>

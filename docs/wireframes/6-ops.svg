@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" font-family="'Segoe UI',system-ui,sans-serif">
+  <style>
+    .bg{fill:#f6f8fb}.frame{fill:#fff;stroke:#c3cbd6}.box{fill:#eef1f6;stroke:#c3cbd6}
+    .rail{fill:#e7ecf2;stroke:#c3cbd6}.lbl{fill:#5b6673;font-size:13px}.lbl-sm{fill:#8a94a1;font-size:11px}
+    .hd{fill:#39424e;font-size:16px;font-weight:600}.note{fill:#2f8a72;font-size:11px}
+    .acc{fill:#d8ece6;stroke:#66b79f}.title{fill:#39424e;font-size:20px;font-weight:700}
+    .chip{fill:#e9edf2;stroke:#c3cbd6}.big{fill:#2f8a72;font-size:30px;font-weight:700}
+    .warn{fill:#f6e6cf;stroke:#d29a4e}.danger{fill:#f6dcd9;stroke:#e0574b}.line{stroke:#cfd6de;stroke-width:6;stroke-linecap:round}
+  </style>
+  <rect class="bg" width="1200" height="820"/>
+  <text class="title" x="40" y="42">Wireframe 6 — Ops dashboard</text>
+  <text class="lbl-sm" x="40" y="62">Queue table · metric tiles (all computed from in-session cases) · Reg Z thresholds · route filter chips</text>
+
+  <rect class="frame" x="40" y="80" width="1120" height="700" rx="8"/>
+  <rect class="rail" x="40" y="80" width="180" height="700"/>
+  <rect class="box" x="60" y="100" width="140" height="34" rx="6"/><text class="lbl" x="74" y="122">◇ ResolvIQ</text>
+  <rect class="box" x="60" y="150" width="140" height="28" rx="5" fill="#dfe6ee" stroke="#9aa6b4"/><text class="lbl" x="74" y="169">Ops</text>
+  <rect class="box" x="220" y="80" width="940" height="40"/><rect class="chip" x="236" y="90" width="90" height="20" rx="4"/><text class="lbl-sm" x="246" y="104">DEMO DATA</text>
+
+  <!-- metric tiles -->
+  <rect class="box" x="244" y="140" width="210" height="90" rx="8"/><text class="big" x="262" y="188">62%</text><text class="lbl-sm" x="262" y="212">Auto-resolve rate</text>
+  <rect class="box" x="466" y="140" width="210" height="90" rx="8"/><text class="big" x="484" y="188">41s</text><text class="lbl-sm" x="484" y="212">p50 latency</text>
+  <rect class="box" x="688" y="140" width="210" height="90" rx="8"/><text class="big" x="706" y="188">18%</text><text class="lbl-sm" x="706" y="212">Escalation rate</text>
+  <rect class="box" x="910" y="140" width="218" height="90" rx="8"/><text class="big" x="928" y="188" fill="#b33b30">3</text><text class="lbl-sm" x="928" y="212">Nearing statutory limit</text>
+  <text class="note" x="244" y="252">Every tile computed from in-session cases — zero hardcoded metrics (deterministic seed)</text>
+
+  <!-- filter chips -->
+  <rect class="acc" x="244" y="268" width="120" height="30" rx="15"/><text class="note" x="272" y="288">All routes</text>
+  <rect class="chip" x="374" y="268" width="130" height="30" rx="15"/><text class="lbl-sm" x="396" y="288">auto_resolve</text>
+  <rect class="chip" x="514" y="268" width="140" height="30" rx="15"/><text class="lbl-sm" x="536" y="288">proposed_split</text>
+  <rect class="chip" x="664" y="268" width="150" height="30" rx="15"/><text class="lbl-sm" x="686" y="288">human_escalation</text>
+
+  <!-- queue table -->
+  <text class="hd" x="244" y="330">Queue</text>
+  <rect class="box" x="244" y="344" width="884" height="380" rx="8"/>
+  <!-- header row -->
+  <text class="lbl-sm" x="264" y="370">Case</text><text class="lbl-sm" x="420" y="370">Reason</text><text class="lbl-sm" x="600" y="370">Confidence</text><text class="lbl-sm" x="740" y="370">Route</text><text class="lbl-sm" x="900" y="370">Reg Z clock</text><text class="lbl-sm" x="1030" y="370">Agent</text>
+  <line x1="260" y1="380" x2="1112" y2="380" stroke="#cfd6de"/>
+  <!-- rows -->
+  <g font-family="monospace" font-size="12" fill="#5b6673">
+    <text x="264" y="410">D-2026-0847</text><text x="420" y="410" font-family="'Segoe UI'">Goods not received</text>
+    <rect class="acc" x="600" y="398" width="110" height="16" rx="8"/><text x="740" y="410" fill="#2f8a72">auto_resolve</text>
+    <rect class="acc" x="900" y="398" width="90" height="16" rx="8"/><text x="1030" y="410" font-family="'Segoe UI'">—</text>
+
+    <text x="264" y="446">D-2026-0848</text><text x="420" y="446" font-family="'Segoe UI'">Goods not received</text>
+    <rect class="danger" x="600" y="434" width="80" height="16" rx="8"/><text x="740" y="446" fill="#b33b30">escalation</text>
+    <rect class="warn" x="900" y="434" width="120" height="16" rx="8"/><text x="1030" y="446" font-family="'Segoe UI'">A. Rivera</text>
+
+    <text x="264" y="482">D-2026-0849</text><text x="420" y="482" font-family="'Segoe UI'">Not as described</text>
+    <rect class="warn" x="600" y="470" width="95" height="16" rx="8"/><text x="740" y="482" fill="#8a5b12">split</text>
+    <rect class="chip" x="900" y="470" width="120" height="16" rx="8"/><text x="1030" y="482" font-family="'Segoe UI'">—</text>
+  </g>
+  <line class="line" x1="264" y1="510" x2="1100" y2="510"/>
+  <line class="line" x1="264" y1="540" x2="1100" y2="540"/>
+  <line class="line" x1="264" y1="570" x2="1100" y2="570"/>
+  <line class="line" x1="264" y1="600" x2="1100" y2="600"/>
+  <text class="lbl-sm" x="264" y="640">…+20 seeded background cases populate the queue &amp; metrics</text>
+
+  <text class="lbl-sm" x="40" y="808">Low-fidelity wireframe · ResolvIQ Round 1</text>
+</svg>
