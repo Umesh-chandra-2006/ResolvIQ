@@ -32,7 +32,7 @@ export function AuditBrowser() {
           <div className="flex items-center gap-2">
             <button
               onClick={verifyChain}
-              className="px-3 py-1.5 text-xs bg-accent text-bg-primary font-medium rounded hover:bg-accent/80 transition-colors"
+              className="px-3 py-1.5 text-xs bg-accent text-white font-medium rounded hover:bg-accent/80 transition-colors"
             >
               Verify Chain
             </button>

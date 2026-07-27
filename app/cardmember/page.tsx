@@ -39,7 +39,7 @@ export default function CardmemberPage() {
         </div>
         <button
           onClick={() => setShowFile(!showFile)}
-          className="group inline-flex items-center gap-2 px-4 py-2.5 bg-accent text-bg-primary font-semibold text-sm rounded-lg hover:bg-accent/90 transition-colors duration-200"
+          className="group inline-flex items-center gap-2 px-4 py-2.5 bg-accent text-white font-semibold text-sm rounded-lg hover:bg-accent/90 transition-colors duration-200"
         >
           {showFile ? (
             <>View Cases</>
@@ -131,7 +131,7 @@ export default function CardmemberPage() {
                         </p>
                       </div>
                       <div className="w-8 h-8 rounded-full bg-bg-tertiary flex items-center justify-center border border-border group-hover:bg-accent group-hover:border-accent transition-colors duration-300 shadow-sm">
-                        <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-bg-primary transition-colors" />
+                        <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-white transition-colors" />
                       </div>
                     </div>
                   </button>

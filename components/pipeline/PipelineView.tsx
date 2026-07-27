@@ -94,7 +94,7 @@ export function PipelineView() {
             className={`px-4 py-2 text-xs rounded font-medium transition-colors ${
               running
                 ? "bg-bg-tertiary text-text-secondary border border-border"
-                : "bg-accent text-bg-primary font-medium hover:bg-accent/80"
+                : "bg-accent text-white font-medium hover:bg-accent/80"
             }`}
           >
             {running ? "Reset" : "Run Pipeline"}
@@ -122,7 +122,7 @@ export function PipelineView() {
                   stage.done
                     ? "bg-success text-white"
                     : stage.active
-                      ? "bg-accent text-bg-primary font-medium animate-pulse-glow"
+                      ? "bg-accent text-white font-medium animate-pulse-glow"
                       : "bg-bg-tertiary text-text-muted border border-border"
                 }`}>
                   {stage.done ? "✓" : i + 1}

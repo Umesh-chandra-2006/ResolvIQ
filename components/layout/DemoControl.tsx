@@ -62,7 +62,7 @@ export function DemoControl({ open, onClose }: Props) {
                   onClick={() => setDemoSpeed(speed)}
                   className={`flex-1 px-2 py-1.5 text-xs rounded border transition-colors ${
                     demoSpeed === speed
-                      ? "bg-accent text-bg-primary font-medium border-accent"
+                      ? "bg-accent text-white font-medium border-accent"
                       : "bg-bg-tertiary text-text-secondary border-border hover:bg-bg-hover"
                   }`}
                 >

@@ -1,41 +1,42 @@
 @import "tailwindcss";
 
 /*
-  ResolvIQ — "Forensic Ledger" palette.
-  Subject: an adjudication console. The two verdict pans (member / merchant)
-  carry the boldness — a steel-cyan and a brass, the two metals of a balance.
-  Everything else stays quiet: ink surfaces, a single verdigris system accent,
-  monospace for the machinery (hashes, IDs, feature values).
+  ResolvIQ — "Paper Ledger" palette.
+  Subject: an adjudication console read as a crisp accounting document. White
+  panels on a cool paper canvas, ink text, hairline rules. The two verdict pans
+  (member steel-cyan / merchant brass) carry the boldness — the two metals of a
+  balance — with a single verdigris system accent and monospace for the
+  machinery (hashes, IDs, feature values). No glow: clean, measured, printed.
 */
 @theme inline {
-  --color-bg-primary: #0a0d12;
-  --color-bg-secondary: #10141b;
-  --color-bg-tertiary: #161c25;
-  --color-bg-elevated: #1d2531;
-  --color-bg-hover: #232c39;
-  --color-border: #29313f;
-  --color-border-bright: #3a4656;
+  --color-bg-primary: #f2f5f8;    /* app canvas — cool paper */
+  --color-bg-secondary: #ffffff;  /* panels / cards */
+  --color-bg-tertiary: #eaeef3;   /* insets, chips, wells */
+  --color-bg-elevated: #ffffff;   /* raised surfaces */
+  --color-bg-hover: #e4e9f0;
+  --color-border: #dce1e9;        /* hairline rule */
+  --color-border-bright: #c3ccd8;
 
-  --color-text-primary: #e7ebe4;
-  --color-text-secondary: #97a2ad;
-  --color-text-muted: #5d6874;
+  --color-text-primary: #1b2432;  /* ink */
+  --color-text-secondary: #55606f;
+  --color-text-muted: #6d7783;
 
   /* Verdigris — the instrument colour: system, interactive, active states. */
-  --color-accent: #3fb593;
-  --color-accent-dim: #103029;
+  --color-accent: #0c8064;
+  --color-accent-dim: #d7efe7;
 
-  --color-success: #3fb593;
-  --color-success-dim: #103029;
-  --color-warning: #e0a94e;
-  --color-warning-dim: #3d2f11;
-  --color-danger: #e0574b;
-  --color-danger-dim: #3d1614;
+  --color-success: #0c8064;
+  --color-success-dim: #d7efe7;
+  --color-warning: #b26a12;
+  --color-warning-dim: #f8e8cf;
+  --color-danger: #c33526;
+  --color-danger-dim: #f9e0dc;
 
   /* The two pans of the balance. */
-  --color-member: #5ba9c9;
-  --color-merchant: #d29a4e;
+  --color-member: #2b7c9e;
+  --color-merchant: #a96f1e;
 
-  --color-mono: #7fe0c8;
+  --color-mono: #0c8064;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -43,13 +44,12 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  /* An instrument panel isn't backlit. Flat ink with a faint cool sheen along
-     the top edge — the milled face of the console, not a glowing dashboard. */
-  background: linear-gradient(180deg, #0c1017 0%, var(--color-bg-primary) 42%);
+  /* Paper, lit softly from the top edge — clean, printed, never backlit. */
+  background: linear-gradient(180deg, #f6f8fb 0%, var(--color-bg-primary) 42%);
   background-attachment: fixed;
   color: var(--color-text-primary);
   font-family: var(--font-sans), system-ui, sans-serif;
@@ -69,7 +69,7 @@ body {
 .glass-panel {
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
-  box-shadow: inset 0 1px 0 rgba(231, 235, 228, 0.03);
+  box-shadow: 0 1px 2px rgba(27, 36, 50, 0.04), 0 1px 3px rgba(27, 36, 50, 0.03);
 }
 
 /* A ledger hairline — for dividers that read as ruled lines, not chrome. */
